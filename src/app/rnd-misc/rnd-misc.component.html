@@ -1,0 +1,38 @@
+<p>rnd-misc works!</p>
+<h2>Press Enter Passing Event</h2>
+<input
+  #inputName
+  name="save"
+  formControlName="save"
+  (keydown.enter)="save($event)"
+/>
+
+<h2>Press Enter Passing From ngmodel and Input</h2>
+<input
+  #inputSearch
+  name="search"
+  formControlName="search"
+  [(ngModel)]="enteredSearchValue"
+  (keydown.enter)="searchText()"
+/>
+<hr />
+<form id="nameForm" [formGroup]="nameForm">
+  <h2>From Name Form: Press Enter Passing Event</h2>
+  <input
+    #inputNameForm
+    name="name-save"
+    formControlName="name-save"
+    (keydown.enter)="saveForm($event)"
+  />
+  <button type="text" name="save" (click)="saveForm($event)">Search</button>
+</form>
+<form id="searchForm">
+  <h2>From Search Form: From ngmodel and Input</h2>
+  <input
+    #inputSearchForm
+    name="keyword-search"
+    [(ngModel)]="enteredSearchValue"
+    (keydown.enter)="searchText()"
+  />
+  <button type="text" name="search" (click)="searchText()">Search</button>
+</form>
