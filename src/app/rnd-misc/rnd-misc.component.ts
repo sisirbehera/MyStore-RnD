@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { SearchTypeHeadComponent } from '../search-type-head/search-type-head.component';
 
 @Component({
   selector: 'app-rnd-misc',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, SearchTypeHeadComponent],
   templateUrl: './rnd-misc.component.html',
   styleUrl: './rnd-misc.component.css',
 })
@@ -20,6 +21,11 @@ export class RndMiscComponent {
 
   public nameForm: FormGroup;
   savedname: string = '';
+
+  // For auto-suggest search Child component
+  result: string = '';
+  @ViewChild('searchTypeHeadComponent', {static: false}) searchTypeHeadComponent: SearchTypeHeadComponent | undefined;
+  
 
   constructor(private formBuilder: FormBuilder) {
     this.nameForm = this.formBuilder.group({
@@ -49,5 +55,10 @@ export class RndMiscComponent {
   searchText() {
     console.log('You entered ngModel: ', this.enteredSearchValue);
     alert(`You entered: ${this.enteredSearchValue}`);
+  }
+
+  // For auto-suggest search Child component 
+  setSearchKeyword($event: any) {
+  	this.result = $event.keyword;
   }
 }

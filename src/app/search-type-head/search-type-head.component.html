@@ -1,0 +1,38 @@
+<p>search-type-head works!</p>
+
+<div class="card container">
+  <div class="label">
+    <label for="search-box">Search Any Keyword:</label>
+  </div>
+  <div>
+    <input id="search=box" name="search-box" #keywordSearchInput placeholder="Search any keyword" type="text"
+      autocomplete="off" (click)="showSearches = true">
+    <!-- <input id="car" #carSearchInput placeholder="Search Car By Name" class="form-control" type="text" autocomplete="off" (click)="showSearches = true"> -->
+    <!-- function fetchResults(searchTerm) {
+        return fetch(`https://api.example.com/search?q=${searchTerm}`)
+          .then(response => response.json());
+      } -->
+  </div>
+
+  <!--  DropDown Starts  -->
+  <div class="card" [hidden]="!showSearches">
+    <div class="search">
+      @for (result of searchedResults; track $index) {
+      <div tappable (click)="setResult(result)" class="search-result">
+        {{result}}
+      </div>
+      }
+    </div>
+
+    @if (searchedResults && searchedResults.length <= 0 && !isSearching) { <p class="search">No result found</p>
+      <p class="search">No result found.</p>
+    }
+    @else if (!isSearching){
+      <p class="search" [hidden]="!isSearching">Searching keyword...</p>
+    }
+
+
+  </div>
+  <!--  DropDown Ends  -->
+
+</div>

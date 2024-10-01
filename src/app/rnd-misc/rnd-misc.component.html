@@ -16,7 +16,7 @@
   (keydown.enter)="searchText()"
 />
 <hr />
-<form id="nameForm" [formGroup]="nameForm">
+<form id="nameForm">
   <h2>From Name Form: Press Enter Passing Event</h2>
   <input
     #inputNameForm
@@ -36,3 +36,16 @@
   />
   <button type="text" name="search" (click)="searchText()">Search</button>
 </form>
+
+<!-- THE AUTO SUGGEST-->
+<div class="row">
+  <div class="col-xl-4" style="position: relative; left: 33%;margin-top: 2%">
+    <p type="info" *ngIf="result">
+      Your Selected Keyword: <strong>{{result}}</strong>
+    </p>
+  </div>
+  <div class="col-xl-12" style="margin-top: 5%;">
+    //Autocomplete Selector
+    <app-search-type-head (setSearchKeywordEvent)="setSearchKeyword($event)"></app-search-type-head>
+  </div>
+</div>
